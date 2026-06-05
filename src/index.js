@@ -1,3 +1,4 @@
+import './bootstrap.js';
 import { fork } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,7 +23,15 @@ function spawnWorkerProcess(workerConfig) {
       WORKER_DIRECT: '1',
       WORKER_CONFIG_JSON: JSON.stringify(workerConfig),
     },
-    stdio: 'inherit',
+    stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
+  });
+
+  child.stdout?.on('data', (chunk) => {
+    process.stdout.write(chunk);
+  });
+
+  child.stderr?.on('data', (chunk) => {
+    process.stderr.write(chunk);
   });
 
   child.on('exit', (code, signal) => {

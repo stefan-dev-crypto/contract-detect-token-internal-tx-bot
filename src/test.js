@@ -184,6 +184,15 @@ async function main() {
     );
   });
 
+  await test('configureWindowsConsole is safe on non-console environments', async () => {
+    const { configureWindowsConsole } = await import('./win-console.js');
+    const first = configureWindowsConsole();
+    const second = configureWindowsConsole();
+
+    assert(typeof first.applied === 'boolean', 'result should include applied flag');
+    assert(second.skipped === true, 'second call should be skipped');
+  });
+
   await test('buildAddressUrl formats explorer address links per chain', async () => {
     assert(
       buildAddressUrl('https://etherscan.io', '0x48afBBD342F64ef8a9AB1c143719B63C2aD81710')

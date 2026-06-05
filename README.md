@@ -160,3 +160,19 @@ npm run verify:chains
 - First launch may require manual Cloudflare verification in the opened Chrome window.
 - Each worker uses its own Chrome profile under `./chrome-profiles/`.
 - Increase `scraper.pageDelayMs` if explorers rate-limit requests.
+
+## Windows console pause (press Enter to resume)
+
+On Windows PowerShell/cmd, **Quick Edit Mode** can freeze the bot when you click the console window to select text. The process looks stopped until you press **Enter**.
+
+The bot disables Quick Edit automatically on startup (`src/bootstrap.js`).
+
+To disable it permanently for new consoles:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/fix-console-quick-edit.ps1
+```
+
+Then close and reopen PowerShell before running `npm start` again.
+
+Manual fix: console title bar → **Properties** → uncheck **Quick Edit Mode**.

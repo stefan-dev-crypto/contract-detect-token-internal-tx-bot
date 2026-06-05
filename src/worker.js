@@ -1,3 +1,4 @@
+import './bootstrap.js';
 import { buildAdvancedFilterUrl } from './chains.js';
 import { ChromeSession } from './chrome.js';
 import {
