@@ -1,0 +1,25 @@
+{
+  "name": "contract-detect-token-internal-tx-bot",
+  "version": "1.0.0",
+  "description": "Scrape block explorer advanced-filter pages and record unique from/to addresses",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "worker": "node src/worker.js",
+    "test": "node src/test.js",
+    "db:status": "node src/db-status.js",
+    "db:empty": "node src/db-empty.js",
+    "verify:chains": "node src/verify-chains.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "mongodb": "^6.12.0",
+    "puppeteer-core": "^24.2.0"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.1.4"
+  }
+}

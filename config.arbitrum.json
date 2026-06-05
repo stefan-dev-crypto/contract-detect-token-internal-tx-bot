@@ -1,0 +1,111 @@
+{
+  "chrome": {
+    "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "userDataDirBase": "./chrome-profiles",
+    "headless": false,
+    "reuseExisting": true,
+    "defaultDebugPort": 9300,
+    "pageLoadTimeoutMs": 120000,
+    "navigationDelayMs": 3000,
+    "cloudflareWaitMs": 15000,
+    "cloudflareMaxWaitMs": 120000
+  },
+  "database": {
+    "uri": "mongodb://127.0.0.1:27017",
+    "databaseName": "contract_detect",
+    "collectionName": "addresses"
+  },
+  "output": {
+    "addressUrlFile": "./address-url.md"
+  },
+  "chains": {
+    "1": {
+      "name": "ethereum",
+      "explorerUrl": "https://etherscan.io",
+      "nativeToken": "eth"
+    },
+    "56": {
+      "name": "bsc",
+      "explorerUrl": "https://bscscan.com",
+      "nativeToken": "bnb"
+    },
+    "8453": {
+      "name": "base",
+      "explorerUrl": "https://basescan.org",
+      "nativeToken": "eth"
+    },
+    "42161": {
+      "name": "arbitrum",
+      "explorerUrl": "https://arbiscan.io",
+      "nativeToken": "eth"
+    }
+  },
+  "scraper": {
+    "maxPages": 500,
+    "defaultTxnType": 2,
+    "defaultPageSize": 100,
+    "defaultToken": "eth",
+    "excludedMethods": [
+      "Transfer",
+      "Transfer From",
+      "Transafer",
+      "Transafer From",
+      "Approve",
+      "Exec"
+    ],
+    "pageDelayMs": 5000,
+    "restartDelayMs": 10000,
+    "emptyPageRetryMs": 30000,
+    "logTransactionLimit": 10
+  },
+  "workers": [
+    {
+      "id": "arb-internal-eth",
+      "chainId": 42161,
+      "txnType": 1,
+      "token": "eth",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "arb-internal-usdc",
+      "chainId": 42161,
+      "txnType": 1,
+      "token": "0xc4D5E18955c851ff77e3856013Fe08fdACcD215c",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "arb-internal-usdt",
+      "chainId": 42161,
+      "txnType": 1,
+      "token": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "arb-internal-dai",
+      "chainId": 42161,
+      "txnType": 1,
+      "token": "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "arb-internal-weth",
+      "chainId": 42161,
+      "txnType": 1,
+      "token": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "arb-internal-wbtc",
+      "chainId": 42161,
+      "txnType": 1,
+      "token": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
+      "pageSize": 100,
+      "debugPort": 9301
+    }
+  ]
+}

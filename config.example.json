@@ -1,0 +1,95 @@
+{
+  "chrome": {
+    "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "userDataDirBase": "./chrome-profiles",
+    "headless": false,
+    "reuseExisting": true,
+    "defaultDebugPort": 9300,
+    "pageLoadTimeoutMs": 120000,
+    "navigationDelayMs": 3000,
+    "cloudflareWaitMs": 15000,
+    "cloudflareMaxWaitMs": 120000
+  },
+  "database": {
+    "uri": "mongodb://127.0.0.1:27017",
+    "databaseName": "contract_detect",
+    "collectionName": "addresses"
+  },
+  "output": {
+    "addressUrlFile": "./address-url.md"
+  },
+  "chains": {
+    "1": {
+      "name": "ethereum",
+      "explorerUrl": "https://etherscan.io",
+      "nativeToken": "eth"
+    },
+    "56": {
+      "name": "bsc",
+      "explorerUrl": "https://bscscan.com",
+      "nativeToken": "bnb"
+    },
+    "8453": {
+      "name": "base",
+      "explorerUrl": "https://basescan.org",
+      "nativeToken": "eth"
+    },
+    "42161": {
+      "name": "arbitrum",
+      "explorerUrl": "https://arbiscan.io",
+      "nativeToken": "eth"
+    }
+  },
+  "scraper": {
+    "maxPages": 500,
+    "defaultTxnType": 2,
+    "defaultPageSize": 100,
+    "defaultToken": "eth",
+    "excludedMethods": [
+      "Transfer",
+      "Transfer From",
+      "Transafer",
+      "Transafer From",
+      "Approve",
+      "Exec"
+    ],
+    "pageDelayMs": 5000,
+    "restartDelayMs": 10000,
+    "emptyPageRetryMs": 30000,
+    "logTransactionLimit": 10
+  },
+  "workers": [
+    {
+      "id": "eth-internal-eth",
+      "chainId": 1,
+      "txnType": 2,
+      "token": "eth",
+      "pageSize": 100,
+      "debugPort": 9300
+    },
+    {
+      "id": "bsc-internal-bnb",
+      "chainId": 56,
+      "txnType": 2,
+      "token": "bnb",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "base-internal-eth",
+      "chainId": 8453,
+      "txnType": 2,
+      "token": "eth",
+      "pageSize": 100,
+      "debugPort": 9302
+    },
+    {
+      "id": "arb-internal-eth",
+      "chainId": 42161,
+      "txnType": 2,
+      "token": "eth",
+      "pageSize": 100,
+      "debugPort": 9303
+    }
+  ]
+}

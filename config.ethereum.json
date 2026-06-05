@@ -1,0 +1,111 @@
+{
+  "chrome": {
+    "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "userDataDirBase": "./chrome-profiles",
+    "headless": false,
+    "reuseExisting": true,
+    "defaultDebugPort": 9300,
+    "pageLoadTimeoutMs": 120000,
+    "navigationDelayMs": 3000,
+    "cloudflareWaitMs": 15000,
+    "cloudflareMaxWaitMs": 120000
+  },
+  "database": {
+    "uri": "mongodb://127.0.0.1:27017",
+    "databaseName": "contract_detect",
+    "collectionName": "addresses"
+  },
+  "output": {
+    "addressUrlFile": "./address-url.md"
+  },
+  "chains": {
+    "1": {
+      "name": "ethereum",
+      "explorerUrl": "https://etherscan.io",
+      "nativeToken": "eth"
+    },
+    "56": {
+      "name": "bsc",
+      "explorerUrl": "https://bscscan.com",
+      "nativeToken": "bnb"
+    },
+    "8453": {
+      "name": "base",
+      "explorerUrl": "https://basescan.org",
+      "nativeToken": "eth"
+    },
+    "42161": {
+      "name": "arbitrum",
+      "explorerUrl": "https://arbiscan.io",
+      "nativeToken": "eth"
+    }
+  },
+  "scraper": {
+    "maxPages": 500,
+    "defaultTxnType": 2,
+    "defaultPageSize": 100,
+    "defaultToken": "eth",
+    "excludedMethods": [
+      "Transfer",
+      "Transfer From",
+      "Transafer",
+      "Transafer From",
+      "Approve",
+      "Exec"
+    ],
+    "pageDelayMs": 5000,
+    "restartDelayMs": 10000,
+    "emptyPageRetryMs": 30000,
+    "logTransactionLimit": 10
+  },
+  "workers": [
+    {
+      "id": "eth-internal-eth",
+      "chainId": 1,
+      "txnType": 1,
+      "token": "eth",
+      "pageSize": 100,
+      "debugPort": 9300
+    },
+    {
+      "id": "eth-internal-usdc",
+      "chainId": 1,
+      "txnType": 1,
+      "token": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "eth-internal-usdt",
+      "chainId": 1,
+      "txnType": 1,
+      "token": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "pageSize": 100,
+      "debugPort": 9302
+    },
+    {
+      "id": "eth-internal-weth",
+      "chainId": 1,
+      "txnType": 1,
+      "token": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "pageSize": 100,
+      "debugPort": 9303
+    },    
+    {
+      "id": "eth-internal-dai",
+      "chainId": 1,
+      "txnType": 1,
+      "token": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "pageSize": 100,
+      "debugPort": 9304
+    },
+    {
+      "id": "eth-internal-wbtc",
+      "chainId": 1,
+      "txnType": 1,
+      "token": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+      "pageSize": 100,
+      "debugPort": 9305
+    }            
+  ]
+}

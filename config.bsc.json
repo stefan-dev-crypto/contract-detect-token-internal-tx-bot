@@ -1,0 +1,103 @@
+{
+  "chrome": {
+    "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "userDataDirBase": "./chrome-profiles",
+    "headless": false,
+    "reuseExisting": true,
+    "defaultDebugPort": 9300,
+    "pageLoadTimeoutMs": 120000,
+    "navigationDelayMs": 3000,
+    "cloudflareWaitMs": 15000,
+    "cloudflareMaxWaitMs": 120000
+  },
+  "database": {
+    "uri": "mongodb://127.0.0.1:27017",
+    "databaseName": "contract_detect",
+    "collectionName": "addresses"
+  },
+  "output": {
+    "addressUrlFile": "./address-url.md"
+  },
+  "chains": {
+    "1": {
+      "name": "ethereum",
+      "explorerUrl": "https://etherscan.io",
+      "nativeToken": "eth"
+    },
+    "56": {
+      "name": "bsc",
+      "explorerUrl": "https://bscscan.com",
+      "nativeToken": "bnb"
+    },
+    "8453": {
+      "name": "base",
+      "explorerUrl": "https://basescan.org",
+      "nativeToken": "eth"
+    },
+    "42161": {
+      "name": "arbitrum",
+      "explorerUrl": "https://arbiscan.io",
+      "nativeToken": "eth"
+    }
+  },
+  "scraper": {
+    "maxPages": 500,
+    "defaultTxnType": 2,
+    "defaultPageSize": 100,
+    "defaultToken": "eth",
+    "excludedMethods": [
+      "Transfer",
+      "Transfer From",
+      "Transafer",
+      "Transafer From",
+      "Approve",
+      "Exec"
+    ],
+    "pageDelayMs": 5000,
+    "restartDelayMs": 10000,
+    "emptyPageRetryMs": 30000,
+    "logTransactionLimit": 10
+  },
+  "workers": [
+    {
+      "id": "bsc-internal-bnb",
+      "chainId": 56,
+      "txnType": 1,
+      "token": "bnb",
+      "pageSize": 100,
+      "debugPort": 9301
+    },
+    {
+      "id": "bsc-internal-usdc",
+      "chainId": 56,
+      "txnType": 1,
+      "token": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+      "pageSize": 100,
+      "debugPort": 9302
+    },
+    {
+      "id": "bsc-internal-peg-usdt",
+      "chainId": 56,
+      "txnType": 1,
+      "token": "0x55d398326f99059fF775485246999027B3197955",
+      "pageSize": 100,
+      "debugPort": 9303
+    },
+    {
+      "id": "bsc-internal-binance-peg-usdt",
+      "chainId": 56,
+      "txnType": 1,
+      "token": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+      "pageSize": 100,
+      "debugPort": 9304
+    },
+    {
+      "id": "bsc-internal-wbnb",
+      "chainId": 56,
+      "txnType": 1,
+      "token": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "pageSize": 100,
+      "debugPort": 9305
+    }
+  ]
+}
